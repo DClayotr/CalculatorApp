@@ -78,5 +78,3 @@ def EqParse(Equation):
         pass
 
     return EqArray
-
-EqParse("716565/(82156+6554+2222)")
