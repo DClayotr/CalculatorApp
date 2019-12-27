@@ -1,33 +1,32 @@
-class OperationTree(): #Data structure that takes two numbers as 'right' and 'left' and an additional operator symbol '+,-.*,/' 
 
-    def __init__(self, symble, leftNum, rightNum): #defines 
-        self.opSymble = symble
-        self.leftNum = leftNum
-        self.rightNum = rightNum
+#leftNum and RightNum represent the numbers on the left and right of the operating symbol in the given substring of the equation
+#opSymble holds a mathimatical operater character (+-*/) and is check to perform an operation on left and right Num
+#calculate sets and returns the value of total
 
-    def calculate(self):
+def calculate(opSymble, leftNum, RightNum):
 
-        total = 0
-        operand = self.opSymble.strip()
+    total = 0
+    operand = opSymble.strip()
 
-        if(operand == '+'):
+    if(operand == '+'):
 
-            total = self.leftNum + self.rightNum
+        total = leftNum + rightNum
 
-        elif(operand == '-'):
+    elif(operand == '-'):
 
-            total = self.leftNum - self.rightNum
+        total = leftNum - rightNum
 
-        elif(operand == '*'):
+    elif(operand == '*'):
 
-            total = self.leftNum * self.rightNum
+        total = leftNum * rightNum
 
-        elif(operand == '/'):
+    elif(operand == '/'):
 
-            total = self.leftNum / self.rightNum
+        total = leftNum / rightNum
 
-        else:
-            exit(0)
+    else:
+        exit(0)
 
 
-        return total
+    return total
+
