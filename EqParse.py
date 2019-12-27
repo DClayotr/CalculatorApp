@@ -10,57 +10,62 @@ def EqParse(Equation):
         #If block will set numSubString to a value then wait to recieve the next value before it appends the old one
         #numSubString is then reassigned to the current value held in EqIndex
         #This method prevents repetative checking
+        #numeric values, '(', ')', and '.' needs to be checked for in order for the program to produce a parsed array
+        #representative of the given equation
 
         if(EqIndex.isnumeric()):
-            if(numSubString == '' or numSubString.isnumeric()):
+            if(numSubString == '' or numSubString.isnumeric() or ('.' in numSubString)):
                 numSubString = numSubString + EqIndex
             else:
                 EqArray.append(numSubString)
                 numSubString = EqIndex
 
-        elif(EqIndex == '+' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(')):
-            if(numSubString.isnumeric()):
-                EqArray.append(int(numSubString))
+        elif(EqIndex == '.' and numSubString.isnumeric()):
+            numSubString = numSubString + EqIndex
+
+        elif(EqIndex == '+' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(' or ('.' in numSubString))):
+            if(numSubString.isnumeric() or ('.' in numSubString)):
+                EqArray.append(float(numSubString))
                 numSubString = '+'
             else:
                 EqArray.append(numSubString)
                 numSubString = '+'
             
-        elif(EqIndex == '-' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(')):
-            if(numSubString.isnumeric()):
-                EqArray.append(int(numSubString))
+        elif(EqIndex == '-' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(' or ('.' in numSubString))):
+            if(numSubString.isnumeric() or ('.' in numSubString)):
+                EqArray.append(float(numSubString))
                 numSubString = '-'
             else:
                 EqArray.append(numSubString)
                 numSubString = '-'
 
-        elif(EqIndex == '*' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(')):
-            if(numSubString.isnumeric()):
-                EqArray.append(int(numSubString))
+        elif(EqIndex == '*' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(' or ('.' in numSubString))):
+            if(numSubString.isnumeric() or ('.' in numSubString)):
+                EqArray.append(float(numSubString))
                 numSubString = '*'
             else:
                 EqArray.append(numSubString)
                 numSubString = '*'
 
-        elif(EqIndex == '/' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(')):
-            if(numSubString.isnumeric()):
-                EqArray.append(int(numSubString))
+        elif(EqIndex == '/' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(' or ('.' in numSubString))):
+            if(numSubString.isnumeric() or ('.' in numSubString)):
+                EqArray.append(float(numSubString))
                 numSubString = '/'
             else:
                 EqArray.append(numSubString)
                 numSubString = '/'
 
         elif(EqIndex == '('):
-            if(numSubString.isnumeric()):    
-                EqArray.append(int(numSubString))
+            if(numSubString.isnumeric() or ('.' in numSubString)):    
+                EqArray.append(float(numSubString))
                 numSubString = '('
             else:
                 EqArray.append(numSubString)
                 numSubString = '('
 
         elif(EqIndex == ')'):
-            if(numSubString.isnumeric()):    
-                EqArray.append(int(numSubString))
+            if(numSubString.isnumeric() or ('.' in numSubString)):    
+                EqArray.append(float(numSubString))
                 numSubString = ')'
             else:
                 EqArray.append(numSubString)
@@ -78,3 +83,4 @@ def EqParse(Equation):
         pass
 
     return EqArray
+
