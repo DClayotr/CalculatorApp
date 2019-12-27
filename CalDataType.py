@@ -3,7 +3,7 @@
 #opSymble holds a mathimatical operater character (+-*/) and is check to perform an operation on left and right Num
 #calculate sets and returns the value of total
 
-def calculate(opSymble, leftNum, RightNum):
+def calculate(opSymble, leftNum, rightNum):
 
     total = 0
     operand = opSymble.strip()
