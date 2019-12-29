@@ -16,5 +16,8 @@ class TestCalculate(unittest.TestCase):
 
     def test_div(self):
         self.assertAlmostEqual(calculate('/',4,5),0.8)
+        
+    def test_expo(self):
+        self.assertEqual(calculate('^',3,2), 9)
 
 
