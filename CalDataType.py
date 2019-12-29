@@ -24,9 +24,12 @@ def calculate(opSymble, leftNum, rightNum):
 
         total = leftNum / rightNum
 
+    elif(operand == '^'):
+
+        total = leftNum ** rightNum
+
     else:
         exit(0)
 
 
     return total
-
