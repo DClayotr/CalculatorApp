@@ -1,10 +1,9 @@
 def EqParse(Equation):
-
+    isNeg = False
     numSubString = '' #acts as a buffer that holds the value that will be added to the parsed EqArray
     EqArray = [] #holds each part of the equation, either number or operator, in seperat indexes for the program to read
 
     for i in range(len(Equation)):
-        
         EqIndex = Equation[i]
 
         #If block will set numSubString to a value then wait to recieve the next value before it appends the old one
@@ -17,46 +16,70 @@ def EqParse(Equation):
             else:
                 EqArray.append(numSubString)
                 numSubString = EqIndex
+                    
 
         elif(EqIndex == '.' and numSubString.isnumeric()):
             numSubString = numSubString + EqIndex
+        
+        elif(EqIndex == '~'):
+            isNeg = True
 
         elif(EqIndex == '+' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(' or ('.' in numSubString))):
             if(numSubString.isnumeric() or ('.' in numSubString)):
-                EqArray.append(float(numSubString))
-                numSubString = '+'
+                if(isNeg):
+                    EqArray.append(float(numSubString)*-1)
+                    numSubString = '+'
+                else:
+                    EqArray.append(float(numSubString))
+                    numSubString = '+'
             else:
                 EqArray.append(numSubString)
                 numSubString = '+'
             
         elif(EqIndex == '-' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(' or ('.' in numSubString))):
             if(numSubString.isnumeric() or ('.' in numSubString)):
-                EqArray.append(float(numSubString))
-                numSubString = '-'
+                if(isNeg):
+                    EqArray.append(float(numSubString)*-1)
+                    numSubString = '-'
+                else:
+                    EqArray.append(float(numSubString))
+                    numSubString = '-'
             else:
                 EqArray.append(numSubString)
                 numSubString = '-'
 
         elif(EqIndex == '*' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(' or ('.' in numSubString))):
             if(numSubString.isnumeric() or ('.' in numSubString)):
-                EqArray.append(float(numSubString))
-                numSubString = '*'
+                if(isNeg):
+                    EqArray.append(float(numSubString)*-1)
+                    numSubString = '*'
+                else:
+                    EqArray.append(float(numSubString))
+                    numSubString = '*'
             else:
                 EqArray.append(numSubString)
                 numSubString = '*'
 
         elif(EqIndex == '/' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(' or ('.' in numSubString))):
             if(numSubString.isnumeric() or ('.' in numSubString)):
-                EqArray.append(float(numSubString))
-                numSubString = '/'
+                if(isNeg):
+                    EqArray.append(float(numSubString)*-1)
+                    numSubString = '/'
+                else:
+                    EqArray.append(float(numSubString))
+                    numSubString = '/'
             else:
                 EqArray.append(numSubString)
                 numSubString = '/'
         
         elif(EqIndex == '^' and (numSubString.isnumeric() or numSubString == ')' or numSubString == '(' or ('.' in numSubString))):
             if(numSubString.isnumeric() or ('.' in numSubString)):
-                EqArray.append(float(numSubString))
-                numSubString = '^'
+                if(isNeg):
+                    EqArray.append(float(numSubString)*-1)
+                    numSubString = '^'
+                else:
+                    EqArray.append(float(numSubString))
+                    numSubString = '^'
             else:
                 EqArray.append(numSubString)
                 numSubString = '^'
