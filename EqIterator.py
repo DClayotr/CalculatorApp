@@ -10,6 +10,7 @@ def eqIterator(eqArray):
 
     calculation = False
     index = 0
+    parenCount = 0
  
     leftNum = 0
     rightNum = 0
@@ -19,19 +20,23 @@ def eqIterator(eqArray):
     while index < len(PEMDAS):
  
         
-        for i in range(len(eqArray)-1):
+        for i in range(len(eqArray)):
             
             place = eqArray[i]
-            print(place)
 
             if (place == '('):
-                last_closing = len(eqArray) - 1 - eqArray[::-1].index(')')
-                recur_list = eqArray[i+1:last_closing]
-                eqArray[i] = eqIterator(recur_list)
-                del eqArray[i+1:last_closing+1]
-                break
+                parenCount = parenCount + 1
 
-
+            elif (place == ')'):
+                parenCount = parenCount - 1            
+                if(parenCount == 0):
+                    first_opening = eqArray.index('(')
+                    recur_list = eqArray[first_opening+1:i]
+                    eqArray[i] = eqIterator(recur_list)
+                    del eqArray[first_opening:i]
+                    break
+            
+                
             else:
                 if(place == PEMDAS[index]):
                 
@@ -55,11 +60,11 @@ def eqIterator(eqArray):
             index += 1
             calculation = False
         
-
-
-    return eqArray[0]        
+    return float(eqArray[-1])        
                 
         
 
-x = str(input("Please enter an expression to be evaluated.\n> "))
-print(eqIterator(EqParse(x.strip())))
+# x = str(input("Please enter an expression to be evaluated.\n> "))
+# print(eqIterator(EqParse(x.strip()))) 
+#use for test input
+
