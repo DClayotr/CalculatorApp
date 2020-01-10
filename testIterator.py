@@ -10,7 +10,6 @@ class TestEquationParse(unittest.TestCase):
 
         self.assertEqual(eqIterator(equation), 10)
 
-    @unittest.expectedFailure
     def test2(self):
         equation = EqParse("(9*7)+(5+6)")
 
